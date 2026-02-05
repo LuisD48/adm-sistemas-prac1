@@ -5,6 +5,6 @@ Write-Host "=============================" -ForegroundColor Cyan
 Write-Host "HOSTNAME: $(hostname)"
 Write-Host "IP INTERNA: $((Get-NetIPAddres -InterfaceAlias '*Ethernet 2*' -AddressFamily IPv4).IPAddress)"
 Write-Host "Disco: $((Get-Volume C).SizeRemaining / 1GB) GB Libres"
-Write-Host "=============================" -ForegroundColor Cyan
+Write-Host "=============================" -ForegroundColor Cyan 
 pause
 "@
