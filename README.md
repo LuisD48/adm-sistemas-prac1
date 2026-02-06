@@ -7,13 +7,13 @@ Este proyecto implementa una infraestructura de red virtual heterogénea (Linux/
 ## Arquitectura de Red
 La red opera bajo el segmento `192.168.10.0/24` en una red interna de VirtualBox (`red_sistemas`) con **Modo Promiscuo: Permitir Todo**.
 
-|--------------------------------------------------------------------|
+
 | 	Nodo  		| SO 					| Rol	 	| IP			 |
 |---------------|-----------------------|-----------|----------------|
 |	NixOS-Srv 	| NixOS (Minimal) 		| Monitor 	| `192.168.10.1` |
 |	Win-Srv** 	| Windows Server 2022 	| Backup 	| `192.168.10.2` |
 |	Win-Cliente | Windows 10 			| Auditor	| `192.168.10.3` |
-|--------------------------------------------------------------------|
+
 
 ## Guía de Instalación y Configuración
 
@@ -43,36 +43,46 @@ services.openssh.enable = true;
 # 5. Instalamos y reiniciamos
 sudo nixos-isntall
 reboot
-´´´
+
+```
 ### 2. Windows Server (Backup)
+
+```bash
 # 1. Configuramos la red mediante Powershell (Ejecutamos como adm)
 # Asignación de IP Estática
 New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress 192.168.10.2 -PrefixLength 24
 
+```
 ### 3. Windows 10 (Cliente)
+
+```bash
 # 1. Configuramos la red mediante Powershell (Ejecutamos como adm)
 # Asignación de IP Estática
 New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress 192.168.10.3 -PrefixLength 24
-
+```
 ## Uso de los scripts
-
 ### 1. Windows (Cliente y Server)
+```bash
 # 1. Abrir PowerShell como admin
 
 # 2. Ejecutar
 .\tarea1_diagnostico.ps1
-
+```
 ### 2. NixOS Linux (Server)
+```bash
 # 1. Dar permisos de ejecucion
 chmod +x tarea1_diagnostico.sh
 
 # 2. Ejecutar
 ./tarea1_diagnostico.sh
 
+```
 ## Solucion de problemas
 
 ### 1. Conflicto de MAC Address
 
-# Causa: Al clonar las máquinas, la interfaz WAN y LAN compartían la misma MAC
+#### Causa: 
+Al clonar las máquinas, la interfaz WAN y LAN compartían la misma MAC
 
-# Solución: Se regeneraron las direcciones MAC desde VirtualBox y se limpió la configuración con Remove-NetIPAddress
+#### Solución: 
+Se regeneraron las direcciones MAC desde VirtualBox y se limpió la configuración con Remove-NetIPAddress
