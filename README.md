@@ -43,7 +43,7 @@ services.openssh.enable = true;
 # 5. Instalamos y reiniciamos
 sudo nixos-isntall
 reboot
-
+´´´
 ### 2. Windows Server (Backup)
 # 1. Configuramos la red mediante Powershell (Ejecutamos como adm)
 # Asignación de IP Estática
